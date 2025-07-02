@@ -1,0 +1,20 @@
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.log
+
+# Ignore local virtual environments
+venv/
+env/
+
+# Ignore Git files
+.git
+.gitignore
+
+# IDE files
+.vscode/
+.DS_Store
+
+# Ignore test files (optional)
+tests/
