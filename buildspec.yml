@@ -1,0 +1,35 @@
+version: 0.2
+
+env:
+  parameter-store:
+    DOCKER_REGISTRY_USERNAME: /Password-Strength-API-AWS-CI-CD-Docker-EC2/docker/username
+    DOCKER_REGISTRY_PASSWORD: /Password-Strength-API-AWS-CI-CD-Docker-EC2/docker/password
+    DOCKER_REGISTRY_URL: /Password-Strength-API-AWS-CI-CD-Docker-EC2/docker/registry
+
+phases:
+  install:
+    runtime-versions:
+      python: 3.11
+
+  pre_build:
+    commands:
+      - echo "Installing Python dependencies..."
+      - pip install -r requirements.txt
+      - echo "Logging in to Docker registry..."
+      - echo "$DOCKER_REGISTRY_PASSWORD" | docker login -u "$DOCKER_REGISTRY_USERNAME" --password-stdin "$DOCKER_REGISTRY_URL"
+
+  build:
+    commands:
+      - echo "Building Docker image..."
+      - IMAGE_NAME=Password-Strength-API-AWS-CI-CD-Docker-EC2
+      - docker build -t $DOCKER_REGISTRY_URL/$DOCKER_REGISTRY_USERNAME/$IMAGE_NAME:latest .
+      - echo "Pushing Docker image..."
+      - docker push $DOCKER_REGISTRY_URL/$DOCKER_REGISTRY_USERNAME/$IMAGE_NAME:latest
+
+  post_build:
+    commands:
+      - echo "Build and Docker push completed successfully!"
+
+artifacts:
+  files:
+    - '**/*'
