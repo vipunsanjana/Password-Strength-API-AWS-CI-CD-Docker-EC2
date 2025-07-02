@@ -18,10 +18,10 @@ A FastAPI-based microservice that analyzes password strength using zxcvbn and ch
 | Technology | Description |
 |------------|-------------|
 | FastAPI | A modern, fast (high-performance) web framework for building APIs with Python 3.6+ based on standard Python type hints. |
-| Docker | A platform designed to help developers build, share, and run container applications. |
-| AWS | Amazon Web Services is a subsidiary of Amazon providing on-demand cloud computing platforms and APIs to individuals, companies, and governments, on a metered pay-as-you-go basis. |
-| EC2 | Amazon Elastic Compute Cloud (Amazon EC2) is a web service that provides secure, resizable compute capacity in the cloud. |
-| CISD | Center for Internet Security (CIS) provides benchmarks and best practices for securing systems and data. |
+| Docker | A platform for developing, shipping, and running applications in containers. |
+| AWS | Amazon Web Services, a comprehensive and broadly adopted cloud platform. |
+| EC2 | Amazon Elastic Compute Cloud, a web service that provides secure, resizable compute capacity in the cloud. |
+| CI/CD | Continuous Integration and Continuous Deployment, a method to frequently deliver apps to customers by introducing automation into the stages of app development. |
 
 ## 📂 Project Structure
 
