@@ -1,18 +1,25 @@
 #!/bin/bash
 set -e
 
-# Load from SSM Parameter Store
+# --- Load values from AWS SSM Parameter Store ---
+echo "Fetching Docker credentials from SSM..."
+
 USERNAME=$(aws ssm get-parameter --name "/Password-Strength-API-AWS-CI-CD-Docker-EC2/docker/username" --with-decryption --query "Parameter.Value" --output text)
 REGISTRY=$(aws ssm get-parameter --name "/Password-Strength-API-AWS-CI-CD-Docker-EC2/docker/registry" --with-decryption --query "Parameter.Value" --output text)
-IMAGE_NAME="Password-Strength-API-AWS-CI-CD-Docker-EC2"
-PORT=8000
 
+# --- Configuration ---
+IMAGE_NAME="password-strength-api-aws-ci-cd-docker-ec2"   
+PORT=8000
 FULL_IMAGE="$REGISTRY/$USERNAME/$IMAGE_NAME:latest"
 
-echo "Pulling image: $FULL_IMAGE"
-docker pull $FULL_IMAGE
+# --- Pull latest image from Docker registry ---
+echo "Pulling Docker image: $FULL_IMAGE"
+docker pull "$FULL_IMAGE"
 
-echo "Starting container..."
-docker run -d --name Password-Strength-API -p $PORT:8000 $FULL_IMAGE
+# --- Start the container ---
+echo "Starting new container..."
+docker run -d --name Password-Strength-API -p $PORT:8000 "$FULL_IMAGE"
 
-echo "Container $FULL_IMAGE started on port $PORT."
+# --- Confirm status ---
+echo "Container '$FULL_IMAGE' started successfully on port $PORT."
+docker ps --filter "name=Password-Strength-API"

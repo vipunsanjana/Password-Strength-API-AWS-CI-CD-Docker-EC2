@@ -21,7 +21,7 @@ phases:
   build:
     commands:
       - echo "Building Docker image..."
-      - IMAGE_NAME=Password-Strength-API-AWS-CI-CD-Docker-EC2
+      - IMAGE_NAME=password-strength-api-aws-ci-cd-docker-ec2
       - docker build -t $DOCKER_REGISTRY_URL/$DOCKER_REGISTRY_USERNAME/$IMAGE_NAME:latest .
       - echo "Pushing Docker image..."
       - docker push $DOCKER_REGISTRY_URL/$DOCKER_REGISTRY_USERNAME/$IMAGE_NAME:latest
