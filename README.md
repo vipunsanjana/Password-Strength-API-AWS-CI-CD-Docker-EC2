@@ -19,7 +19,7 @@ A FastAPI-based microservice that analyzes password strength using `zxcvbn` and 
 - password_strength_api/
 - ├── app/
 - │ ├── init.py
--│ ├── main.py
+- │ ├── main.py
 - │ ├── schemas.py
 - │ ├── utils.py
 - ├── requirements.txt
