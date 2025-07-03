@@ -5,6 +5,8 @@ env:
     DOCKER_REGISTRY_USERNAME: /Password-Strength-API-AWS-CI-CD-Docker-EC2/docker/username
     DOCKER_REGISTRY_PASSWORD: /Password-Strength-API-AWS-CI-CD-Docker-EC2/docker/password
     DOCKER_REGISTRY_URL: /Password-Strength-API-AWS-CI-CD-Docker-EC2/docker/registry
+  variables:
+    IMAGE_NAME: password-strength-api-aws-ci-cd-docker-ec2
 
 phases:
   install:
@@ -17,11 +19,13 @@ phases:
       - pip install -r requirements.txt
       - echo "Logging in to Docker registry..."
       - echo "$DOCKER_REGISTRY_PASSWORD" | docker login -u "$DOCKER_REGISTRY_USERNAME" --password-stdin "$DOCKER_REGISTRY_URL"
+      - echo "DOCKER_REGISTRY_URL=$DOCKER_REGISTRY_URL"
+      - echo "DOCKER_REGISTRY_USERNAME=$DOCKER_REGISTRY_USERNAME"
+      - echo "IMAGE_NAME=$IMAGE_NAME"
 
   build:
     commands:
       - echo "Building Docker image..."
-      - IMAGE_NAME=password-strength-api-aws-ci-cd-docker-ec2
       - docker build -t $DOCKER_REGISTRY_URL/$DOCKER_REGISTRY_USERNAME/$IMAGE_NAME:latest .
       - echo "Pushing Docker image..."
       - docker push $DOCKER_REGISTRY_URL/$DOCKER_REGISTRY_USERNAME/$IMAGE_NAME:latest
