@@ -52,5 +52,5 @@ A FastAPI-based microservice that analyzes password strength using zxcvbn and ch
 
 ```json
 {
-  "password": "myp@ssword123"
+  "password": "myp@ssword12"
 }
